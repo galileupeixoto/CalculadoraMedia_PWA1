@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Calculadora de Média Final</title>
+  <link rel="icon" href="favicon.png">
+  <link rel="apple-touch-icon" href="icone.png">
+  <link rel="manifest" href="manifest.json">
+  <meta name="theme-color" content="#0072ff">
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      background:linear-gradient(135deg, #d3d3d3, #a9a9a9);
+      color: #fff;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      height: 100vh;
+      margin: 0;
+    }
+    h1 { margin-bottom: 10px; text-align: center; }
+    .container {
+      background-color: rgba(255, 255, 255, 0.15);
+      padding: 20px 25px;
+      border-radius: 15px;
+      box-shadow: 0 4px 15px rgba(0, 0, 0, 0.3);
+      width: 320px;
+      text-align: center;
+    }
+    label { display: block; margin-top: 10px; font-weight: bold; }
+    input {
+      width: 100%; padding: 8px; border: none; border-radius: 8px;
+      margin-top: 5px; font-size: 16px; text-align: center;
+    }
+    button {
+      margin-top: 20px; width: 100%; background-color: #ffffff;
+      color: #0072ff; border: none; padding: 10px;
+      border-radius: 8px; font-size: 16px; cursor: pointer; font-weight: bold;
+      transition: all 0.2s ease-in-out;
+    }
+    button:hover { background-color: #e0e0e0; transform: scale(1.02); }
+    .resultado { margin-top: 20px; font-size: 20px; font-weight: bold; }
+    .creditos { font-size: 12px; margin-top: 15px; opacity: 0.9; }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <h1>
+  <img src="coringa.png" alt="Ícone" style="width:40px; height:40px; vertical-align:middle; margin-right:8px;">
+  Calculadora de Média Final ISH-4
+</h1>
+    <label>AIM1:</label><input type="number" id="aim1" step="0.01" placeholder="0">
+    <label>AIM2:</label><input type="number" id="aim2" step="0.01" placeholder="0">
+    <label>Gincana1:</label><input type="number" id="g1" step="0.01" placeholder="0">
+    <label>Gincana2:</label><input type="number" id="g2" step="0.01" placeholder="0">
+    <label>Logbook:</label><input type="number" id="logbook" step="0.01" placeholder="0">
+    <label>Média ABL/TBL:</label><input type="number" id="abl" step="0.01" placeholder="0">
+    <label>Média QKA/QBL:</label><input type="number" id="qka" step="0.01" placeholder="0">
+    <label>Seminário:</label><input type="number" id="seminario" step="0.01" placeholder="0">
+    <label>Qualitative Feedback:</label><input type="number" id="qualitative" step="0.01" placeholder="0">
+    <button onclick="calcular()">Calcular Média Final</button>
+    <div class="resultado" id="resultado"></div>
+    <div class="creditos">PWA Offline - CalculadoraMedia</div>
+  </div>
+  <script>
+    function calcular() {
+      const aim1 = parseFloat(document.getElementById('aim1').value) || 0;
+      const aim2 = parseFloat(document.getElementById('aim2').value) || 0;
+      const g1 = parseFloat(document.getElementById('g1').value) || 0;
+      const g2 = parseFloat(document.getElementById('g2').value) || 0;
+      const logbook = parseFloat(document.getElementById('logbook').value) || 0;
+      const abl = parseFloat(document.getElementById('abl').value) || 0;
+      const qka = parseFloat(document.getElementById('qka').value) || 0;
+      const seminario = parseFloat(document.getElementById('seminario').value) || 0;
+      const qualitative = parseFloat(document.getElementById('qualitative').value) || 0;
+
+      const mediaFinal = (
+        (((aim1 + aim2)/2) * 5.0) +
+        (((g1 + g2)/2) * 1.5) +
+        (logbook * 0.5) +
+        (abl * 1.0) +
+        (qka * 0.5) +
+        (seminario * 1.0) +
+        (qualitative * 0.5)
+      ) / 10;
+
+      document.getElementById('resultado').innerText = "Média Final: " + mediaFinal.toFixed(2);
+    }
+
+    if ("serviceWorker" in navigator) {
+      window.addEventListener("load", () => {
+        navigator.serviceWorker.register("service-worker.js")
+          .then(() => console.log("Service Worker registrado com sucesso."))
+          .catch(err => console.error("Erro ao registrar Service Worker:", err));
+      });
+    }
+  </script>
+</body>
+</html>

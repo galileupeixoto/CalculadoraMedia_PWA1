@@ -1,0 +1,20 @@
+{
+  "name": "Calculadora de Média Final",
+  "short_name": "CalcMedia",
+  "start_url": "index.html",
+  "display": "standalone",
+  "background_color": "#0072ff",
+  "theme_color": "#0072ff",
+  "icons": [
+    {
+      "src": "icone.png",
+      "sizes": "512x512",
+      "type": "image/png"
+    },
+    {
+      "src": "favicon.png",
+      "sizes": "64x64",
+      "type": "image/png"
+    }
+  ]
+}
